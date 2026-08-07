@@ -7788,7 +7788,7 @@ window.publishCrossAppAlert = async function() {
     inv.history = newHistory;
     if (db && typeof update === 'function') {
       try {
-        await update(ref(db, `invoices/${inv.id}`), { history: newHistory });
+        await update(ref(db, `invoiceTracker/invoices/${inv.id}`), { history: newHistory });
       } catch (e) {
         console.warn('Could not persist history to RTDB:', e);
       }
@@ -10277,7 +10277,7 @@ async function pollCrossAppResolves() {
           matchedInv.history = newHistory;
           try {
             if (db && typeof update === 'function') {
-              await update(ref(db, `invoices/${matchedInv.id}`), { history: newHistory });
+              await update(ref(db, `invoiceTracker/invoices/${matchedInv.id}`), { history: newHistory });
             }
           } catch (e) {
             console.warn('[CrossAppPoll] Persist failed:', e);
